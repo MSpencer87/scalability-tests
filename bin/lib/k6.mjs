@@ -19,9 +19,11 @@ export function k6_run(cluster, envs, tags, test, record = false) {
         envs["KUBECONFIG"] = "/kube/config"
     }
 
+    //run(`touch test_results.json && sleep 5 && chmod +x test_results.json`)
+
     const envArgs = Object.entries(envs).map(([k,v]) => ["-e", `${k}=${v}`]).flat()
     const tagArgs = Object.entries(tags).map(([k,v]) => ["--tag", `${k}=${v}`]).flat()
-    const outputArgs = record ? ["-o", "experimental-prometheus-rw"] : []
+    const outputArgs = record ? ["-o", "experimental-prometheus-rw", "--out", "json=~/test_results.json"] : []
 
     const cmdline = `k6 run ${envArgs.join(" ")} ${tagArgs.join(" ")} ${q(dir(test))}`
     console.log(`***Running equivalent of:\n ${cmdline}\n`)

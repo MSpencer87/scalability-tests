@@ -11,3 +11,5 @@ config/rke*
 
 bin/out.json
 bin/results.csv
+
+test_results.json
