@@ -58,9 +58,11 @@ export function list(cookies) {
         const fullUrl = url + "?pagesize=100&page=" + i +
             (revision != null ? "&revision=" + revision : "")
 
-        const res = http.get(fullUrl, {cookies: cookies})
-
-        check(res, {
+        const res = http.get(fullUrl, {
+            cookies: cookies, 
+            tags: { name: 'ConfigMapsPage'}})
+            
+            check(res, {
             '/v1/configmaps returns status 200': (r) => r.status === 200,
         })
 

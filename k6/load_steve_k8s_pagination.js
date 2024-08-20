@@ -85,6 +85,8 @@ export function list(cookies) {
 }
 
 export function handleSummary(data) {
+    console.log('Preparing the end-of-test summary...');
+
     return {
         'stdout': textSummary(data, { indent: ' ', enableColors: false }), // keep default text output
         //"out.json": JSON.stringify(data), // additionally dump raw data in JSON form for later processing
